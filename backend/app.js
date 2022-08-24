@@ -8,6 +8,10 @@ mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}/${DB_NAME}`)
 
 const app = express()
 
+app.use('/user', require('./src/routes/user'))
+app.use('/answers', require('./src/routes/answers'))
+app.use('/questions', require('./src/routes/questions'))
+
 app.use((req, res, next) => {
   const error = new Error('Nichts gefunden')
   error.status = 404
