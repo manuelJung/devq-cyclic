@@ -22,3 +22,8 @@
 - **User-Answer-List**: Der User kann im Account-Bereich eine Liste seiner Antworten (zu Fragen) sehen
 - **Avatar**: Der User kann beim Erstellen des Accounts einen Avatar hochladen. dieser wird bei den Antworten des Users (Question-Page) dargestellt
 - **Such-Funktion**: Der User kann nach einem Search-Term über die Question-Liste filtern
+
+
+## Models
+
+![Model-Relations](images/Model-Relations.png)
