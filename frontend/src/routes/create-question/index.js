@@ -1,7 +1,10 @@
 import './index.scss'
+import Layout from '../../Layout'
 
 export default function CreateQuestion () {
   return (
-    <h1>Create-Question Route</h1>
+    <Layout>
+      <h1>Create-Question Route</h1>
+    </Layout>
   )
 }

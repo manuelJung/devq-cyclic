@@ -1,7 +1,10 @@
 import './index.scss'
+import Layout from '../../Layout'
 
 export default function Login () {
   return (
-    <h1>Login Route</h1>
+    <Layout>
+      <h1>Login Route</h1>
+    </Layout>
   )
 }
