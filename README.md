@@ -27,3 +27,161 @@
 ## Models
 
 ![Model-Relations](images/Model-Relations.png)
+
+## Endpunkte
+
+### GET /questions
+
+liefert eine liste aller questions zurück
+
+Response:
+```javascript
+[
+  {
+    id: "kj23föj23följö",
+    title: "Was kann XY tun?",
+    description: "...",
+    user: {
+      email: 'my@mail.de',
+      name: 'Hans Müller'
+    },
+    answers: [
+      {
+        description: '...'
+      }
+    ]
+  }
+]
+```
+
+### GET /questions/[:id]
+
+liefert uns eine einzelne Question zurück
+
+Response:
+```javascript
+{
+  id: "kj23föj23följö",
+  title: "Was kann XY tun?",
+  description: "...",
+  user: {
+    email: 'my@mail.de',
+    name: 'Hans Müller'
+  },
+  answers: [
+    {
+      description: '...'
+    }
+  ]
+}
+```
+
+### POST /questions
+
+erstellt eine neue question
+
+Body:
+```javascript
+{
+  title: "Was kann XY tun?",
+  description: '...',
+  user: "23ölhf13flöhflk"
+}
+```
+
+Response:
+```javascript
+{
+  id: "kj23föj23följö",
+  title: "Was kann XY tun?",
+  description: "...",
+  user: "adasdqwqqqf",
+  answers: []
+}
+```
+
+### POST /answer
+
+erstellt eine antwort für eine question
+
+Body:
+```javascript
+{
+  description: "...",
+  user: "adasdqwqqqf",
+  question: "kj23föj23följö",
+}
+```
+
+Response:
+```javascript
+{
+  id: "dfeljöfweöj",
+  description: "...",
+  user: "adasdqwqqqf",
+  question: "kj23föj23följö",
+}
+```
+
+### POST /user/login
+
+logged user ein
+
+Body:
+```javascript
+{
+  email: "my@mail.de",
+  password: "123456"
+}
+```
+
+Response:
+```javascript
+{
+  id: "adasdqwqqqf",
+  email: "my.mail.de",
+  name: "Hans Müller",
+  answers: [],
+  questions: [
+    "kj23föj23följö"
+  ]
+}
+```
+
+
+### POST /user/register
+
+erstellt einen neuen user und loggt ihn ein
+
+Body:
+```javascript
+{
+  email: "my.mail.de",
+  password: "123456",
+  name: "Hans Müller"
+}
+```
+
+Response:
+```javascript
+{
+  id: "adasdqwqqqf",
+  email: "my.mail.de",
+  name: "Hans Müller",
+  answers: [],
+  questions: []
+}
+```
+
+### POST /user/logout
+
+der usertoken cookie wird gelöscht. der token wird aus der datenbank entfernt
+
+Body:
+```javascript
+{}
+```
+Response:
+```javascript
+true
+```
