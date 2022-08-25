@@ -100,7 +100,7 @@ Response:
 }
 ```
 
-### POST /answer
+### POST /answers
 
 erstellt eine antwort für eine question
 
