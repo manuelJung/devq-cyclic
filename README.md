@@ -101,7 +101,6 @@ Body:
 ```javascript
 {
   description: "...",
-  user: "adasdqwqqqf",
   question: "kj23föj23följö",
 }
 ```

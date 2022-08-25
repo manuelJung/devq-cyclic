@@ -24,11 +24,18 @@ app.use('/user', require('./src/routes/user'))
 app.use('/answers', require('./src/routes/answers'))
 app.use('/questions', require('./src/routes/questions'))
 
+app.post('/drop-database', async (req, res) => {
+  await mongoose.connection.db.dropDatabase()
+  res.status(200).send('OK')
+})
+
+
 app.use((req, res, next) => {
   const error = new Error('Nichts gefunden')
   error.status = 404
   next(error)
 })
+
 
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
