@@ -4,6 +4,9 @@ const validations = require('../lib/validators/user')
 
 const app = express.Router()
 
+// -> /user
+app.get('/', controller.getCurrentUser)
+
 // -> /user/logout
 app.post('/logout', controller.logout)
 

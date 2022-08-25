@@ -47,3 +47,16 @@ exports.login = async (req, res, next) => {
 
   res.status(200).send(user)
 }
+
+/** @type {import("express").RequestHandler} */
+exports.getCurrentUser = async (req, res) => {
+  const token = req.cookies['user-token']
+
+  if(!token) {
+    return res.status(200).json(null)
+  }
+
+  const user = await User.findOne().where('token').equals(token)
+
+  return res.status(200).json(user)
+}

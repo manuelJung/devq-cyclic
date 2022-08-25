@@ -5,7 +5,7 @@ import useUser from '../../hooks/useUser'
 export default function Account () {
   const user = useUser()
 
-  console.log(user.data)
+  console.log('user', user.data)
 
   return (
     <Layout>
