@@ -7,8 +7,17 @@ exports.getQuestionList = (req, res, next) => {
 }
 
 /** @type {import("express").RequestHandler} */
-exports.getQuestionsById = (req, res, next) => {
-  throw new Error('not implemented')
+exports.getQuestionsById = async (req, res, next) => {
+  const id = req.params.id
+  const question = await Question.findById(id).populate('user')
+
+  if(!question) {
+    const error = new Error('diese Question-ID gibt es nicht')
+    error.status = 400
+    return next(error)
+  }
+
+  res.status(200).send(question)
 }
 
 /** @type {import("express").RequestHandler} */

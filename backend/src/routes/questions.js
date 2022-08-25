@@ -11,6 +11,7 @@ app.route('/')
   .get(controller.getQuestionList)
   .post(auth, validations.createQuestion, controller.createQuestion)
 
+// -> /questions/6307832565f17206daee5084
 app.get('/:id', controller.getQuestionsById)
 
 
