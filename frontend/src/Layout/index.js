@@ -11,7 +11,7 @@ export default function Layout (props) {
   return (
     <div className='Layout'>
       <header>
-        <div className='logo'>DevQ</div>
+        <Link to='/' className='logo'>DevQ</Link>
         <div className='spacer' />
         <Link to={accountLink} className='icon-wrapper'>
           <BiUser size={30} color="black"/>

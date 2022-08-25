@@ -68,11 +68,6 @@ Response:
     email: 'my@mail.de',
     name: 'Hans Müller'
   },
-  answers: [
-    {
-      description: '...'
-    }
-  ]
 }
 ```
 
