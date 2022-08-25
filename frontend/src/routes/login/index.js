@@ -2,6 +2,7 @@ import * as React from 'react'
 import './index.scss'
 import Layout from '../../Layout'
 import useUser from '../../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login () {
   const [email, setEmail] = React.useState('')
@@ -9,23 +10,32 @@ export default function Login () {
   const [showRegister, setShowRegister] = React.useState(false)
   const [name, setName] = React.useState('')
   const user = useUser()
+  const navigate = useNavigate()
 
 
   const handleLoginClick = async (e) => {
     e.preventDefault()
-    await user.login({
+    const status = await user.login({
       email: email,
       password: password
     })
+
+    if(status === 200) {
+      navigate('/account')
+    }
   }
 
   const handleRegisterClick = async (e) => {
     e.preventDefault()
-    await user.register({
+    const status = await user.register({
       email: email,
       password: password,
       name: name,
     })
+
+    if(status === 200) {
+      navigate('/account')
+    }
   }
 
   if(showRegister) {

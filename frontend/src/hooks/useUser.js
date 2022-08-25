@@ -4,8 +4,8 @@ const Context = React.createContext({
   data: null,
   error: '',
   isFetching: false,
-  login: () => null,
-  register: () => null,
+  login: () => Promise.resolve(0),
+  register: () => Promise.resolve(0),
 })
 
 export function UserProvider (props) {
