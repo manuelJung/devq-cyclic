@@ -13,4 +13,32 @@
   }
 
   > .description {}
+
+  > .answers {
+    margin-bottom: 40px;
+    > p {
+      padding: 10px;
+      border: 1px solid grey;
+      background: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  }
+
+  > form {
+    > textarea {
+      display: block;
+      width: 100%;
+    }
+
+    > button {
+      padding: 10px 20px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  }
 }
