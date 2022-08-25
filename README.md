@@ -96,7 +96,6 @@ Response:
   title: "Was kann XY tun?",
   description: "...",
   user: "adasdqwqqqf",
-  answers: []
 }
 ```
 
@@ -141,10 +140,6 @@ Response:
   id: "adasdqwqqqf",
   email: "my.mail.de",
   name: "Hans Müller",
-  answers: [],
-  questions: [
-    "kj23föj23följö"
-  ]
 }
 ```
 
@@ -168,8 +163,6 @@ Response:
   id: "adasdqwqqqf",
   email: "my.mail.de",
   name: "Hans Müller",
-  answers: [],
-  questions: []
 }
 ```
 
@@ -184,4 +177,17 @@ Body:
 Response:
 ```javascript
 true
+```
+
+### GET /user
+
+gibt den aktuellen User zurück
+
+Response:
+```javascript
+{
+  id: "adasdqwqqqf",
+  email: "my.mail.de",
+  name: "Hans Müller",
+}
 ```
