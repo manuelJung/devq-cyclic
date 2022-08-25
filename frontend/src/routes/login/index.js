@@ -14,9 +14,26 @@ export default function Login () {
     alert('login-click')
   }
 
-  const handleRegisterClick = (e) => {
+  const handleRegisterClick = async (e) => {
     e.preventDefault()
-    alert('register-click')
+    
+    const res = await fetch('http://localhost:3001/user/register', {
+      method: "POST",
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+      })
+    })
+
+    const result = await res.json()
+
+    console.log('status', res.status)
+    console.log('result', result)
   }
 
   if(showRegister) {
