@@ -10,9 +10,6 @@ export default function Login () {
   const [name, setName] = React.useState('')
   const user = useUser()
 
-  console.log(user.data)
-
-
 
   const handleLoginClick = async (e) => {
     e.preventDefault()
@@ -91,6 +88,10 @@ export default function Login () {
           <button type='submit'>
             Abschicken
           </button>
+
+          {user.error && (
+            <div className='error'>{user.error}</div>
+          )}
         </form>
       </div>
     </Layout>
