@@ -5,17 +5,20 @@ import LoginRoute from './routes/login'
 import AccountRoute from './routes/account'
 import CreateQuestionRoute from './routes/create-question'
 import QuestionRoute from './routes/questions_id'
+import { UserProvider } from './hooks/useUser'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<OverviewRoute />} />
-        <Route path="/login" element={<LoginRoute />} />
-        <Route path="/account" element={<AccountRoute />} />
-        <Route path="/questions/:id" element={<QuestionRoute />} />
-        <Route path="/create-question" element={<CreateQuestionRoute />} />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<OverviewRoute />} />
+          <Route path="/login" element={<LoginRoute />} />
+          <Route path="/account" element={<AccountRoute />} />
+          <Route path="/questions/:id" element={<QuestionRoute />} />
+          <Route path="/create-question" element={<CreateQuestionRoute />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   )
 }

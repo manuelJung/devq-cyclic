@@ -1,55 +1,34 @@
 import * as React from 'react'
 import './index.scss'
 import Layout from '../../Layout'
+import useUser from '../../hooks/useUser'
 
 export default function Login () {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [showRegister, setShowRegister] = React.useState(false)
   const [name, setName] = React.useState('')
+  const user = useUser()
+
+  console.log(user.data)
+
 
 
   const handleLoginClick = async (e) => {
     e.preventDefault()
-    
-    const res = await fetch('http://localhost:3001/user/login', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
+    await user.login({
+      email: email,
+      password: password
     })
-
-    const result = await res.json()
-
-    console.log('status', res.status)
-    console.log('result', result)
   }
 
   const handleRegisterClick = async (e) => {
     e.preventDefault()
-    
-    const res = await fetch('http://localhost:3001/user/register', {
-      method: "POST",
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        name: name,
-      })
+    await user.register({
+      email: email,
+      password: password,
+      name: name,
     })
-
-    const result = await res.json()
-
-    console.log('status', res.status)
-    console.log('result', result)
   }
 
   if(showRegister) {
