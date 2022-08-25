@@ -84,8 +84,7 @@ Body:
 ```javascript
 {
   title: "Was kann XY tun?",
-  description: '...',
-  user: "23ölhf13flöhflk"
+  description: '...'
 }
 ```
 
