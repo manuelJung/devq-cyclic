@@ -1,15 +1,25 @@
 import './index.scss'
 import Layout from '../../Layout'
 import useUser from '../../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 export default function Account () {
   const user = useUser()
+  const navigate = useNavigate()
 
-  console.log('user', user.data)
+  const handleLogout = async () => {
+    await user.logout()
+    navigate('/login')
+  }
 
   return (
     <Layout>
-      <h1>Account Route</h1>
+      <div className='Account'>
+        <div className='title'>
+          <h1>Das bin Ich</h1>
+          <button onClick={handleLogout}>logout</button>
+        </div>
+      </div>
     </Layout>
   )
 }

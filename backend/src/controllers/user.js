@@ -4,8 +4,18 @@ const crypto = require('crypto')
 
 
 /** @type {import("express").RequestHandler} */
-exports.logout = (req, res, next) => {
-  throw new Error('not implemented')
+exports.logout = async (req, res) => {
+  const token = req.cookies['user-token']
+  const user = await User.findOne().where('token').equals(token)
+
+  if(user) {
+    user.token = ''
+    await user.save()
+  }
+
+  res.cookie('user-token', '', { maxAge: 1, sameSite: 'strict', httpOnly: true })
+
+  res.status(200).send()
 }
 
 /** @type {import("express").RequestHandler} */

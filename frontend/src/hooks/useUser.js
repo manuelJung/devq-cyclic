@@ -6,6 +6,7 @@ const Context = React.createContext({
   isFetching: false,
   login: async () => 0,
   register: async () => 0,
+  logout: async () => {}
 })
 
 export function UserProvider (props) {
@@ -92,6 +93,13 @@ export function UserProvider (props) {
       setIsFetching(false)
 
       return res.status
+    },
+
+    logout: async () => {
+      await fetch('http://localhost:3001/user/logout', {
+        method: 'POST',
+        credentials: 'include'
+      })
     }
   }
 
