@@ -100,6 +100,7 @@ export function UserProvider (props) {
         method: 'POST',
         credentials: 'include'
       })
+      setUser(null)
     }
   }
 
