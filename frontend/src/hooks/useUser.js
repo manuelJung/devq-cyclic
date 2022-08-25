@@ -3,6 +3,7 @@ import * as React from 'react'
 const Context = React.createContext({
   data: null,
   error: '',
+  isFetching: false,
   login: () => null,
   register: () => null,
 })
@@ -10,13 +11,16 @@ const Context = React.createContext({
 export function UserProvider (props) {
   const [user, setUser] = React.useState(null)
   const [error, setError] = React.useState('')
+  const [isFetching, setIsFetching] = React.useState(false)
   
   const data = {
     data: user,
     error: error,
+    isFetching: isFetching,
 
     login: async (body) => {
       setError('')
+      setIsFetching(true)
       const res = await fetch('http://localhost:3001/user/login', {
         method: "POST",
         credentials: 'include',
@@ -38,11 +42,14 @@ export function UserProvider (props) {
         setError(result.error)
       }
 
+      setIsFetching(false)
+
       return res.status
     },
 
     register: async (body) => {
       setError('')
+      setIsFetching(true)
       const res = await fetch('http://localhost:3001/user/register', {
         method: "POST",
         credentials: 'include',
@@ -63,6 +70,8 @@ export function UserProvider (props) {
       else if (result.error) {
         setError(result.error)
       }
+
+      setIsFetching(false)
 
       return res.status
     }
