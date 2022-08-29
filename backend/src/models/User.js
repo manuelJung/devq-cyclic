@@ -7,4 +7,10 @@ const Schema = mongoose.Schema({
   token: String,
 })
 
+Schema.methods.toJSON = function() {
+	const user = this;
+	const result = {name: user.name, email: user.email};
+	return result;
+}
+
 module.exports = mongoose.model('User', Schema, 'users')
