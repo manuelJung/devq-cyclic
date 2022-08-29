@@ -73,8 +73,11 @@ export default function Question () {
         <p className='description'>{question.description}</p>
 
         <div className='answers'>
-          {question.answers.map(answer => (
-            <p key={answer._id}>{answer.description}</p>
+          {question.answers.map((answer) => (
+			<div key={answer._id}> 
+				<p className="annotation"><em>{answer.user.name} hat geantwortet:</em></p>
+            	<p>{answer.description}</p>
+			</div>
           ))}
         </div>
 

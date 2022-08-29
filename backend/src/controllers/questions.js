@@ -10,7 +10,29 @@ exports.getQuestionList = async (req, res) => {
 /** @type {import("express").RequestHandler} */
 exports.getQuestionsById = async (req, res, next) => {
   const id = req.params.id
-  const question = await Question.findById(id).populate('user', 'name').populate('answers', 'description')
+  const question = await Question.findById(id).populate('user', 'name').populate('answers', 'user description') // 1
+
+  await Promise.all(question.answers.map(async answer => {
+	await answer.populate("user", "name"); // 2
+  }))
+
+  /* Ergebnisbeispiel:
+  {
+	title: "...", // 1
+	description: "...". // 1
+	user: { name: "... "}, // 1 Populate "user"
+	answers: [ // 1 Populate "answers"
+		{
+			description: "...",
+			user: { name: "..."} // 2 Populate "user"
+		}
+		{
+			description: "...",
+			user: { name: "..."} // 2 Populate "user"
+		}
+	]
+  }
+  */
 
   if(!question) {
     const error = new Error('diese Question-ID gibt es nicht')
