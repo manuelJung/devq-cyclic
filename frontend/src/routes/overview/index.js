@@ -26,6 +26,7 @@ export default function Overview () {
           {questions.map(question => (
             <Link className='question' key={question._id} to={'/questions/'+question._id}>
               <h4>{question.title}</h4>
+			  <p>{question.answers.length} Antworten</p>
               <p>{question.user.name}</p>
             </Link>
           ))}
