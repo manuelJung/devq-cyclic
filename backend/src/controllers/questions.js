@@ -3,17 +3,17 @@ const Question = require("../models/Question")
 
 /** @type {import("express").RequestHandler} */
 exports.getQuestionList = async (req, res) => {
-  const questions = await Question.find().populate('user', 'name')
+  const questions = await Question.find().populate('user', 'name profileImage')
   res.status(200).send(questions)
 }
 
 /** @type {import("express").RequestHandler} */
 exports.getQuestionsById = async (req, res, next) => {
   const id = req.params.id
-  const question = await Question.findById(id).populate('user', 'name').populate('answers', 'user description') // 1
+  const question = await Question.findById(id).populate('user', 'name profileImage').populate('answers', 'user description') // 1
 
   await Promise.all(question.answers.map(async answer => {
-	await answer.populate("user", "name"); // 2
+	await answer.populate("user", "name profileImage"); // 2
   }))
 
   /* Ergebnisbeispiel:

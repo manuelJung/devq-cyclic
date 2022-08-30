@@ -69,13 +69,17 @@ export function UserProvider (props) {
     register: async (body) => {
       setError('')
       setIsFetching(true)
+
+	  const formData = new FormData();
+	  formData.append("name", body.name);
+	  formData.append("email", body.email);
+	  formData.append("password", body.password);
+	  formData.append("file", body.file);
+
       const res = await fetch('http://localhost:3001/user/register', {
         method: "POST",
         credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
+        body: formData
       })
 
       const result = await res.json()

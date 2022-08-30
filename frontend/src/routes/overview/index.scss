@@ -1,3 +1,16 @@
+.profileImage {
+	border-radius: 50%;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.profile {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 .Overview {
   max-width: 1000px;
   margin: 0 auto;

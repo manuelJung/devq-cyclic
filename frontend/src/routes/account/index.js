@@ -12,13 +12,22 @@ export default function Account () {
     navigate('/login')
   }
 
+  console.log(user.data);
+
   return (
     <Layout>
       <div className='Account'>
         <div className='title'>
           <h1>Das bin Ich</h1>
-          <button onClick={handleLogout}>logout</button>
+		  <button onClick={handleLogout}>logout</button>
         </div>
+		{user.data && <div className={"profileView"}>
+			<div>{user.data.profileImage && <img src={user.data.profileImage} alt="Profilbild" width="128" height="128" />}</div>
+			<div style={{marginLeft: 15}}>
+				<p>{user.data.name}</p>
+				<p>{user.data.email}</p>
+			</div>
+		</div>}
       </div>
     </Layout>
   )

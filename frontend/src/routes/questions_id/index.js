@@ -68,14 +68,20 @@ export default function Question () {
       <div className='QuestionId'>
         <div className='title'>
           <h1>{question.title}</h1>
-          <div className='name'>{question.user.name}</div>
+		  <div className="profile">
+		  	{question.user.profileImage && <div><img className="profileImage" src={question.user.profileImage} width="24" height="24" alt="Profilbild" /></div>}
+          	<div className='name'>&nbsp; {question.user.name}</div>
+		  </div>
         </div>
         <p className='description'>{question.description}</p>
 
         <div className='answers'>
           {question.answers.map((answer) => (
 			<div key={answer._id}> 
-				<p className="annotation"><em>{answer.user.name} hat geantwortet:</em></p>
+				<div className="profile">
+					{answer.user.profileImage && <div><img className="profileImage" src={answer.user.profileImage} width="24" height="24" alt="Profilbild" /></div>}
+					<div className="annotation"><em>&nbsp;{answer.user.name} hat geantwortet:</em></div>
+				</div>
             	<p>{answer.description}</p>
 			</div>
           ))}
