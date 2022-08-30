@@ -27,7 +27,10 @@ export default function Overview () {
             <Link className='question' key={question._id} to={'/questions/'+question._id}>
               <h4>{question.title}</h4>
 			  <p>{question.answers.length} Antworten</p>
-              <p>{question.user.name}</p>
+			  <div className="profile">
+			  {question.user.profileImage && <div><img className="profileImage" src={question.user.profileImage} width="24" height="24" alt="Profilbild" /></div>}
+              <div><p>&nbsp;{question.user.name}</p></div>
+			  </div>
             </Link>
           ))}
         </div>

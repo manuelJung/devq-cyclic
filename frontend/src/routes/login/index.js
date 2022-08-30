@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Login () {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [file, setFile] = React.useState();
   const [showRegister, setShowRegister] = React.useState(false)
   const [name, setName] = React.useState('')
   const user = useUser()
@@ -31,6 +32,7 @@ export default function Login () {
       email: email,
       password: password,
       name: name,
+	  file: file
     })
 
     if(status === 200) {
@@ -59,6 +61,11 @@ export default function Login () {
             <div className='input-group'>
               <div className='label'>Name</div>
               <input type='text' value={name} placeholder='Name' onChange={e => setName(e.target.value)}/>
+            </div>
+
+			<div className='input-group'>
+              <div className='label'>Profilbild</div>
+              <input type='file' accept='image/*' placeholder='Profilbild' onChange={e => setFile(e.target.files[0])}/>
             </div>
   
             <div className='toggle-register' onClick={() => setShowRegister(false)}>

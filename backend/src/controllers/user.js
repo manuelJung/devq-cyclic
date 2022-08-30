@@ -1,7 +1,8 @@
 const User = require("../models/User")
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-
+const fs = require('fs/promises')
+const path = require('path')
 
 /** @type {import("express").RequestHandler} */
 exports.logout = async (req, res) => {
@@ -23,6 +24,15 @@ exports.register = async (req, res) => {
   const user = new User(req.body)
   user.password = await bcrypt.hash(user.password, 10)
   user.token = crypto.randomBytes(64).toString('hex')
+
+  if(req.file) {
+		const filename = path.join(process.cwd(), req.file.path)
+		const buffer = await fs.readFile(filename);
+		const image = `data:${req.file.mimetype};base64,${buffer.toString("base64")}`;
+		user.profileImage = image;
+		await fs.unlink(filename);
+  }
+
   await user.save()
 
   res.cookie('user-token', user.token, { maxAge: 900000, sameSite: 'strict', httpOnly: true })
