@@ -17,6 +17,25 @@
 
   > h1 {}
 
+  > .categories {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    gap: 5px;
+
+    > button {
+      padding: 10px 20px;
+      border: 1px solid grey;
+      background: lightgrey;
+      cursor: pointer;
+
+      &.active {
+        background: black;
+        color: white;
+      }
+    }
+  }
+
   > .questions {
     gap: 10px;
     display: flex;

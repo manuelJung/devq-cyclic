@@ -3,7 +3,16 @@ const Question = require("../models/Question")
 
 /** @type {import("express").RequestHandler} */
 exports.getQuestionList = async (req, res) => {
-  const questions = await Question.find().populate('user', 'name profileImage')
+  const category = req.query.category
+
+  let query = Question.find()
+
+  if(category) {
+    query = query.where('category').equals(category)
+  }
+
+  const questions = await query.populate('user', 'name profileImage')
+
   res.status(200).send(questions)
 }
 

@@ -34,6 +34,9 @@
 
 liefert eine liste aller questions zurück
 
+Query-Params:
+- **category**: String. filtert nach Kategorie
+
 Response:
 ```javascript
 [

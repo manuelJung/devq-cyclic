@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 
 export default function Overview () {
   const [questions, setQuestions] = React.useState([])
+  const [category, setCategory] = React.useState('')
 
   React.useEffect(() => {
-    fetch('http://localhost:3001/questions')
+    fetch('http://localhost:3001/questions?category='+category)
       .then(async res => {
         const result = await res.json()
 
@@ -15,12 +16,33 @@ export default function Overview () {
           setQuestions(result)
         }
       })
-  }, [])
+  }, [category])
+
+  const handleCategoryClick = selectedCategory => {
+    if(selectedCategory === category) {
+      setCategory('')
+    }
+    else {
+      setCategory(selectedCategory)
+    }
+  }
 
   return (
     <Layout>
       <div className='Overview'>
         <h1>Fragen</h1>
+
+        <div className='categories'>
+          <button 
+            className={category === 'js' ? 'active' : ''}
+            onClick={() => handleCategoryClick('js')}>JS</button>
+          <button 
+            className={category === 'css' ? 'active' : ''}
+            onClick={() => handleCategoryClick('css')}>CSS</button>
+          <button 
+            className={category === 'html' ? 'active' : ''}
+            onClick={() => handleCategoryClick('html')}>HTML</button>
+        </div>
 
         <div className='questions'>
           {questions.map(question => (
