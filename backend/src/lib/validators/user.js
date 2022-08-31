@@ -8,6 +8,11 @@ exports.register = [
   validator
 ]
 
+exports.update = [
+  body('name').exists().trim().withMessage('Dein Name darf nicht leer sein'),
+  validator
+]
+
 exports.login = [
   body('email').isEmail().withMessage('wir benötigen eine valide Email'),
   body('password').isLength({min: 4}).withMessage('das ist nicht dein Passwort'),

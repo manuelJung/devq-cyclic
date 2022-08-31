@@ -82,5 +82,26 @@ exports.getCurrentUser = async (req, res) => {
 
   const user = await User.findOne().where('token').equals(token)
 
-  return res.status(200).json(user)
+  return res.status(200).send(user)
+}
+
+
+/** @type {import("express").RequestHandler} */
+exports.updateUser = async (req, res) => {
+  const {name} = req.body
+
+  const user = req.user
+  user.name = name
+
+  if(req.file) {
+    const filename = path.join(process.cwd(), req.file.path)
+		const buffer = await fs.readFile(filename);
+		const image = `data:${req.file.mimetype};base64,${buffer.toString("base64")}`;
+		user.profileImage = image;
+		await fs.unlink(filename);
+  }
+
+  await user.save()
+
+  res.status(200).send(user)
 }
