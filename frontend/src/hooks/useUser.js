@@ -70,14 +70,44 @@ export function UserProvider (props) {
       setError('')
       setIsFetching(true)
 
-	  const formData = new FormData();
-	  formData.append("name", body.name);
-	  formData.append("email", body.email);
-	  formData.append("password", body.password);
-	  formData.append("file", body.file);
+      const formData = new FormData();
+      formData.append("name", body.name);
+      formData.append("email", body.email);
+      formData.append("password", body.password);
+      formData.append("file", body.file);
 
       const res = await fetch('http://localhost:3001/user/register', {
         method: "POST",
+        credentials: 'include',
+        body: formData
+      })
+
+      const result = await res.json()
+
+      if(res.status === 200) {
+        setUser(result)
+      }
+      else if (result.errors) {
+        setError(result.errors[0].msg)
+      }
+      else if (result.error) {
+        setError(result.error)
+      }
+
+      setIsFetching(false)
+
+      return res.status
+    },
+
+    update: async (body) => {
+      setError('')
+      setIsFetching(true)
+      const formData = new FormData()
+      formData.append('name', body.name)
+      formData.append('file', body.profilePic)
+
+      const res = await fetch('http://localhost:3001/user', {
+        method: 'PATCH',
         credentials: 'include',
         body: formData
       })

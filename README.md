@@ -146,14 +146,15 @@ Response:
 
 ### POST /user/register
 
-erstellt einen neuen user und loggt ihn ein
+erstellt einen neuen user und loggt ihn ein. Body kommt als FormData
 
 Body:
 ```javascript
 {
   email: "my.mail.de",
   password: "123456",
-  name: "Hans Müller"
+  name: "Hans Müller",
+  file: "my-avatar.jpg"
 }
 ```
 
@@ -189,5 +190,28 @@ Response:
   id: "adasdqwqqqf",
   email: "my.mail.de",
   name: "Hans Müller",
+  profileImage: "data:base64",
+}
+```
+
+### PATCH /user
+
+ermöglicht es user-daten zu updaten. Body wird als FormData definiert
+
+Body:
+```javascript
+{
+  name: "Hans Gerber",
+  file: "my-avatar.jpg"
+}
+```
+
+Response:
+```javascript
+{
+  id: "adasdqwqqqf",
+  email: "my.mail.de",
+  name: "Hans Müller",
+  profileImage: "data:base64"
 }
 ```
