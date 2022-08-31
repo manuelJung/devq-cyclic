@@ -79,7 +79,8 @@ Body:
 ```javascript
 {
   title: "Was kann XY tun?",
-  description: '...'
+  description: '...',
+  category: "css",
 }
 ```
 
@@ -90,6 +91,8 @@ Response:
   title: "Was kann XY tun?",
   description: "...",
   user: "adasdqwqqqf",
+  answers: [],
+  category: "css"
 }
 ```
 

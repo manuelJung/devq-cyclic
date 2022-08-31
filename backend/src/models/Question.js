@@ -12,7 +12,13 @@ const Schema = mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Answer',
     required: true,
-  }]
+  }],
+  category: {
+    type: String,
+    enum: ['js', 'html', 'css'],
+    required: true
+  }
 })
+
 
 module.exports = mongoose.model('Question', Schema, 'questions')

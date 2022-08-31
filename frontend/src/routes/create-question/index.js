@@ -7,6 +7,7 @@ export default function CreateQuestion () {
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
   const [error, setError] = React.useState('')
+  const [category, setCategory] = React.useState('html')
   const [isFetching, setIsFetching] = React.useState(false)
   const navigate = useNavigate()
 
@@ -23,6 +24,7 @@ export default function CreateQuestion () {
       body: JSON.stringify({
         title: title,
         description: description,
+        category: category
       })
     })
 
@@ -44,6 +46,14 @@ export default function CreateQuestion () {
     }
   }
 
+  const handleCategoryClick = category => {
+    return e => {
+      e.preventDefault()
+      e.stopPropagation() // event wird hier beendet. das formular bekommt keinen klick
+      setCategory(category)
+    }
+  }
+
   return (
     <Layout>
       <form className='CreateQuestion' onSubmit={handleSubmit}>
@@ -52,6 +62,19 @@ export default function CreateQuestion () {
 
         <h2>Beschreibung</h2>
         <textarea rows={20} value={description} onChange={e => setDescription(e.target.value)}/>
+
+        <h2>Kategorie</h2>
+        <div className='button-list'>
+          <button 
+            className={category === 'html' ? 'active' : ''}
+            onClick={handleCategoryClick('html')}>HTML</button>
+          <button 
+            className={category === 'js' ? 'active' : ''}
+            onClick={handleCategoryClick('js')}>JS</button>
+          <button 
+            className={category === 'css' ? 'active' : ''}
+            onClick={handleCategoryClick('css')}>CSS</button>
+        </div>
 
         <button>{isFetching ? 'fetching...' : 'Absenden'}</button>
         {error && ( <div className='error'>{error}</div> )}
