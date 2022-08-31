@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom'
 export default function Overview () {
   const [questions, setQuestions] = React.useState([])
   const [category, setCategory] = React.useState('')
+  const [search, setSearch] = React.useState('')
 
   React.useEffect(() => {
-    fetch('http://localhost:3001/questions?category='+category)
+    fetch(`http://localhost:3001/questions?category=${category}&search=${search}`)
       .then(async res => {
         const result = await res.json()
 
@@ -16,7 +17,7 @@ export default function Overview () {
           setQuestions(result)
         }
       })
-  }, [category])
+  }, [category, search])
 
   const handleCategoryClick = selectedCategory => {
     if(selectedCategory === category) {
@@ -32,17 +33,23 @@ export default function Overview () {
       <div className='Overview'>
         <h1>Fragen</h1>
 
-        <div className='categories'>
-          <button 
-            className={category === 'js' ? 'active' : ''}
-            onClick={() => handleCategoryClick('js')}>JS</button>
-          <button 
-            className={category === 'css' ? 'active' : ''}
-            onClick={() => handleCategoryClick('css')}>CSS</button>
-          <button 
-            className={category === 'html' ? 'active' : ''}
-            onClick={() => handleCategoryClick('html')}>HTML</button>
+        
+        <div className='filters'>
+          <input type='text' placeholder='Search...' value={search} onChange={e => setSearch(e.target.value)}/>
+
+          <div className='categories'>
+            <button 
+              className={category === 'js' ? 'active' : ''}
+              onClick={() => handleCategoryClick('js')}>JS</button>
+            <button 
+              className={category === 'css' ? 'active' : ''}
+              onClick={() => handleCategoryClick('css')}>CSS</button>
+            <button 
+              className={category === 'html' ? 'active' : ''}
+              onClick={() => handleCategoryClick('html')}>HTML</button>
+          </div>
         </div>
+
 
         <div className='questions'>
           {questions.map(question => (

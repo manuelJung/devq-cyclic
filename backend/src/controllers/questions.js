@@ -4,14 +4,22 @@ const Question = require("../models/Question")
 /** @type {import("express").RequestHandler} */
 exports.getQuestionList = async (req, res) => {
   const category = req.query.category
+  const search = req.query.search
 
-  let query = Question.find()
+  let dbQuery = Question.find()
 
   if(category) {
-    query = query.where('category').equals(category)
+    dbQuery = dbQuery.where('category').equals(category)
   }
 
-  const questions = await query.populate('user', 'name profileImage')
+  if(search) {
+    dbQuery = dbQuery.or([
+      {"title": {$regex: search, $options: "i"}},
+      // {"descripion": {$regex: search}}
+    ])
+  }
+
+  const questions = await dbQuery.populate('user', 'name profileImage')
 
   res.status(200).send(questions)
 }

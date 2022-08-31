@@ -36,6 +36,7 @@ liefert eine liste aller questions zurück
 
 Query-Params:
 - **category**: String. filtert nach Kategorie
+- **search**: String. Durchsucht title
 
 Response:
 ```javascript
