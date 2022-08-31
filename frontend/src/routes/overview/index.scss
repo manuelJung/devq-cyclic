@@ -15,26 +15,36 @@
   max-width: 1000px;
   margin: 0 auto;
 
-  > h1 {}
-
-  > .categories {
+  > .filters {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    gap: 5px;
+    justify-content: space-between;
 
-    > button {
-      padding: 10px 20px;
-      border: 1px solid grey;
-      background: lightgrey;
-      cursor: pointer;
+    > input {
+      height: 30px;
+      width: 250px;
+      padding-left: 10px;
+    }
 
-      &.active {
-        background: black;
-        color: white;
+    > .categories {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+      gap: 5px;
+  
+      > button {
+        padding: 10px 20px;
+        border: 1px solid grey;
+        background: lightgrey;
+        cursor: pointer;
+  
+        &.active {
+          background: black;
+          color: white;
+        }
       }
     }
   }
+
 
   > .questions {
     gap: 10px;
