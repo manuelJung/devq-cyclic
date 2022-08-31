@@ -25,6 +25,10 @@ exports.register = async (req, res) => {
   user.password = await bcrypt.hash(user.password, 10)
   user.token = crypto.randomBytes(64).toString('hex')
 
+  // req.file.path: "/uploads/asfkhqfklhqf.jpg"
+  // process.cwd(): "C://manuelJung/projects/deq-min-project/backend"
+  // -> C://manuelJung/projects/deq-min-project/backend/uploads/asfkhqfklhqf.jpg
+  // buffer: 68656c6c6f20776f726c64
   if(req.file) {
 		const filename = path.join(process.cwd(), req.file.path)
 		const buffer = await fs.readFile(filename);
