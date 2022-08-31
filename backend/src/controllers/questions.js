@@ -15,7 +15,7 @@ exports.getQuestionList = async (req, res) => {
   if(search) {
     dbQuery = dbQuery.or([
       {"title": {$regex: search, $options: "i"}},
-      // {"descripion": {$regex: search}}
+      {"description": {$regex: search, $options: "i" }}
     ])
   }
 
