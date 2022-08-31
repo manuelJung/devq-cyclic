@@ -18,15 +18,18 @@ export default function Account () {
 
   const handleUpdate = async e => {
     e.preventDefault()
-    await user.update({
+    const status = await user.update({
       name,
       profilePic
     })
-    setShowSuccess(true)
 
-    setTimeout(() => {
-      setShowSuccess(false)
-    }, 4000)
+    if(status === 200) {
+      setShowSuccess(true)
+  
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 4000)
+    }
   }
 
   return (
