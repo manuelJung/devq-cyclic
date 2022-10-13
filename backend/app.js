@@ -7,8 +7,6 @@ require('dotenv').config()
 const PORT = 3000
 const dbUri = 'mongodb+srv://mjung:mongotest@cluster0.di05mk9.mongodb.net/?retryWrites=true&w=majority';
 
-mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}/${DB_NAME}`)
-
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
