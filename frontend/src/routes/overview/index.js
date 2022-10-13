@@ -9,7 +9,7 @@ export default function Overview () {
   const [search, setSearch] = React.useState('')
 
   React.useEffect(() => {
-    fetch(`http://localhost:3001/questions?category=${category}&search=${search}`)
+    fetch(`/questions?category=${category}&search=${search}`)
       .then(async res => {
         const result = await res.json()
 

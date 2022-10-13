@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const cors = require('cors')
+// const cors = require('cors')
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
@@ -11,13 +11,13 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
-const corsConfig = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-}
+// const corsConfig = {
+//   origin: 'http://localhost:3000',
+//   credentials: true,
+// }
 
-app.use(cors(corsConfig))
-app.options('*', cors(corsConfig))
+// app.use(cors(corsConfig))
+// app.options('*', cors(corsConfig))
 
 app.use('/user', require('./src/routes/user'))
 app.use('/answers', require('./src/routes/answers'))
@@ -27,6 +27,8 @@ app.post('/drop-database', async (req, res) => {
   await mongoose.connection.db.dropDatabase()
   res.status(200).send('OK')
 })
+
+app.use(express.static(__dirname + '/build'))
 
 
 app.use((req, res, next) => {

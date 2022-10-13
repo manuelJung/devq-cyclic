@@ -15,7 +15,7 @@ export default function CreateQuestion () {
     e.preventDefault()
     setIsFetching(true)
     
-    const res = await fetch('http://localhost:3001/questions', {
+    const res = await fetch('/questions', {
       method: 'POST',
       credentials: 'include',
       headers: {

@@ -9,7 +9,7 @@ export default function Question () {
   const [answer, setAnswer] = React.useState('')
 
   React.useEffect(() => {
-    fetch('http://localhost:3001/questions/' + params.id, {
+    fetch('/questions/' + params.id, {
       method: 'GET',
       credentials: 'include'
     })
@@ -25,7 +25,7 @@ export default function Question () {
   const handleAnswerSubmit = async e => {
     e.preventDefault()
     
-    const res = await fetch('http://localhost:3001/answers', {
+    const res = await fetch('/answers', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -41,7 +41,7 @@ export default function Question () {
       setAnswer('')
 
       // refetch question
-      fetch('http://localhost:3001/questions/' + params.id, {
+      fetch('/questions/' + params.id, {
         method: 'GET',
         credentials: 'include'
       })
