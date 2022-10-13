@@ -28,7 +28,7 @@ app.post('/drop-database', async (req, res) => {
   res.status(200).send('OK')
 })
 
-app.get('*', express.static(__dirname + '/build'))
+// app.get('*', express.static(__dirname + '/build'))
 // app.get('/', (req, res) => res.status(200).send('ok'))
 
 
