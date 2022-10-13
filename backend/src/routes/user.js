@@ -6,7 +6,7 @@ const multer = require("multer");
 const app = express.Router()
 const auth = require('../lib/middlewares/auth')
 
-const upload = multer({dest: "uploads/"});
+const upload = multer({dest: "/tmp/"});
 
 // -> /user
 app.get('/', controller.getCurrentUser)
