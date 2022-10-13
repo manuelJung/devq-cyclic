@@ -4,7 +4,8 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
-const {DB_URL, DB_PORT, DB_NAME, PORT} = process.env
+const PORT = 3000
+const dbUri = 'mongodb+srv://mjung:mongotest@cluster0.di05mk9.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}/${DB_NAME}`)
 
@@ -44,6 +45,10 @@ app.use((error, req, res, next) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log('Server running on port', PORT)
-})
+mongoose.connect(dbUri, err => {
+  if(err){ console.error(err); return false;}
+  // connection to mongo is successful, listen for requests
+  app.listen(PORT, () => {
+      console.log("listening for requests");
+  })
+});
